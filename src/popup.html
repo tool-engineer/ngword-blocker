@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body class="popup">
+
+<header class="p-head">
+  <div class="p-icon">🔇</div>
+  <div class="p-title">
+    <strong>ミュートワード</strong>
+    <span id="status">有効</span>
+  </div>
+  <label class="switch"><input type="checkbox" id="enabled"><span></span></label>
+</header>
+
+<div class="p-stats">
+  <div class="p-stat">
+    <strong id="tabCount">0</strong>
+    <span>このページ</span>
+  </div>
+  <div class="p-stat">
+    <strong id="total">0</strong>
+    <span>累計</span>
+  </div>
+  <div class="p-stat">
+    <strong id="kwCount">0</strong>
+    <span>キーワード</span>
+  </div>
+</div>
+
+<form class="p-form" id="kwForm">
+  <input class="input" id="kwInput" type="text" placeholder="キーワードを追加" autocomplete="off">
+  <button class="btn" type="submit">追加</button>
+</form>
+
+<div class="p-chips" id="chips"></div>
+<p class="p-empty" id="empty">キーワードが未登録です</p>
+
+<footer class="p-foot">
+  <span id="siteState"></span>
+  <button class="btn btn-ghost" id="openOptions" type="button">すべての設定</button>
+</footer>
+
+<script src="common.js"></script>
+<script src="adapters.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

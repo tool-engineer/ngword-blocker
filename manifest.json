@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "ミュートワード フィルター",
+  "version": "1.0.0",
+  "description": "X / Yahoo!ニュース などで、指定したキーワードを含む記事・ポストを自動で非表示にします。",
+  "permissions": ["storage", "scripting"],
+  "optional_host_permissions": ["*://*/*"],
+  "host_permissions": [
+    "*://x.com/*",
+    "*://twitter.com/*",
+    "*://*.yahoo.co.jp/*",
+    "*://news.google.com/*",
+    "*://*.hatena.ne.jp/*"
+  ],
+  "background": { "service_worker": "src/background.js" },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://x.com/*",
+        "*://twitter.com/*",
+        "*://*.yahoo.co.jp/*",
+        "*://news.google.com/*",
+        "*://*.hatena.ne.jp/*"
+      ],
+      "js": ["src/common.js", "src/adapters.js", "src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "ミュートワード フィルター",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "src/options.html"
+}

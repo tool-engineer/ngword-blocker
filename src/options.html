@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ミュートワード フィルター - 設定</title>
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="options.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-icon">🔇</div>
+    <div class="hero-text">
+      <h1>ミュートワード フィルター</h1>
+      <p>指定したキーワードを含む記事・ポストを自動で隠します。</p>
+    </div>
+    <label class="switch hero-switch" title="拡張機能のON / OFF">
+      <input type="checkbox" id="enabled"><span></span>
+    </label>
+  </header>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>ミュートするキーワード</h2>
+      <span class="badge" id="kwCount">0</span>
+      <button class="btn-ghost btn tiny" id="toggleBulk" type="button">一括編集</button>
+    </div>
+    <p class="card-desc">
+      部分一致・大文字小文字を区別せず判定します（全角/半角も同一視）。
+      <code>/正規表現/</code> の形式も使えます。例: <code>/(増税|値上げ)/</code>
+    </p>
+
+    <div id="chipView">
+      <form class="kw-form" id="kwForm">
+        <input class="input" id="kwInput" type="text" placeholder="キーワードを入力して Enter" autocomplete="off">
+        <button class="btn" type="submit">追加</button>
+      </form>
+      <div class="chips" id="chips"></div>
+      <p class="empty" id="empty">まだ登録がありません。上の入力欄から追加してください。</p>
+    </div>
+
+    <div id="bulkView" hidden>
+      <textarea class="input" id="bulkInput" spellcheck="false" placeholder="1行に1キーワード"></textarea>
+      <div class="row-end">
+        <button class="btn btn-ghost" id="bulkCancel" type="button">キャンセル</button>
+        <button class="btn" id="bulkSave" type="button">この内容で保存</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>非表示の方法</h2></div>
+    <div class="modes">
+      <label class="mode">
+        <input type="radio" name="mode" value="collapse">
+        <div class="mode-body">
+          <strong>折りたたむ</strong>
+          <span>細いバーだけ残し、クリックで中身を確認できます。</span>
+        </div>
+      </label>
+      <label class="mode">
+        <input type="radio" name="mode" value="hide">
+        <div class="mode-body">
+          <strong>完全に消す</strong>
+          <span>要素ごと削除したように、痕跡を残さず消します。</span>
+        </div>
+      </label>
+    </div>
+    <label class="check spaced">
+      <input type="checkbox" id="matchCase">
+      <span>大文字・小文字を区別する</span>
+    </label>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>対象サイト</h2></div>
+    <p class="card-desc">フィルターを動かすサイトを選びます。</p>
+    <div class="sites">
+      <label class="site"><input type="checkbox" data-site="x"><span class="site-name">X (Twitter)</span><span class="site-host">x.com / twitter.com</span></label>
+      <label class="site"><input type="checkbox" data-site="yahoo"><span class="site-name">Yahoo! JAPAN</span><span class="site-host">news.yahoo.co.jp ほか</span></label>
+      <label class="site"><input type="checkbox" data-site="googlenews"><span class="site-name">Google ニュース</span><span class="site-host">news.google.com</span></label>
+      <label class="site"><input type="checkbox" data-site="hatena"><span class="site-name">はてなブックマーク</span><span class="site-host">b.hatena.ne.jp</span></label>
+      <label class="site"><input type="checkbox" data-site="generic"><span class="site-name">その他のサイト（汎用モード）</span><span class="site-host">すべてのページで動作。許可が必要です</span></label>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>ブロック実績</h2></div>
+    <div class="stat-total"><strong id="statTotal">0</strong><span>件をこれまでに非表示にしました</span></div>
+    <ul class="ranking" id="ranking"></ul>
+    <div class="row-end">
+      <button class="btn btn-ghost" id="exportBtn" type="button">設定を書き出す</button>
+      <button class="btn btn-ghost" id="importBtn" type="button">読み込む</button>
+      <button class="btn btn-ghost btn-danger" id="resetStats" type="button">実績をリセット</button>
+      <input type="file" id="importFile" accept="application/json" hidden>
+    </div>
+  </section>
+
+  <p class="foot">設定は自動で保存されます。</p>
+</div>
+
+<div class="toast" id="toast">保存しました</div>
+
+<script src="common.js"></script>
+<script src="options.js"></script>
+</body>
+</html>
